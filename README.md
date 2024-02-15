@@ -1,4 +1,4 @@
-# LegiScan
+# legiscan
 
 Easily interact with the LegiScan API with javascript. Get your [LegiScan API Key](https://legiscan.com/legiscan) and follow the instructions below.
 
