@@ -1,0 +1,20 @@
+{
+  "name": "legiscan",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "version": "1.0.0",
+  "description": "LegiScan API wrapper",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "/lib"
+  ],
+  "entry point": "lib/index.js",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
