@@ -12,7 +12,11 @@
     "/lib"
   ],
   "entry point": "lib/index.js",
-  "author": "",
+  "author": "agbales",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agbales/legiscan.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.3.3"
