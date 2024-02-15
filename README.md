@@ -27,19 +27,33 @@ legiscan
 #### Queries
 
 ```
-search(query, page, state)
+search(query, page, year, state, id)
 ```
 
 - query: string
 - page?: number (defaults to 1)
+- year?: number (1=all, 2=current, 3=recent, 4=prior, >1900=exact [Default: 2])
 - state?: string (defaults to 'ALL')
+- id?: number (session number)
 
 ```
-searchAllResults(query, state)
+searchAllResults(query, year, state, id)
 ```
 
 - query: string
+- year?: number (1=all, 2=current, 3=recent, 4=prior, >1900=exact [Default: 2])
 - state?: string (defaults to 'ALL')
+- id?: number (session number)
+
+```
+searchRaw(query, page, year, state, id)
+```
+
+- query: string
+- page?: number (defaults to 1)
+- year?: number (1=all, 2=current, 3=recent, 4=prior, >1900=exact [Default: 2])
+- state?: string (defaults to 'ALL')
+- id?: number (session number)
 
 ```
 getBill(billId)
