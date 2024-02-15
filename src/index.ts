@@ -4,8 +4,10 @@ import {
   fetchBillTextByDocId,
   fetchBills,
   fetchMasterListByState,
-  searchWithPagination,
+  fetchSearch,
+  searchAllPages,
 } from './handlers/index.js';
+import { State } from './handlers/types.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -14,8 +16,12 @@ export class Legiscan {
     this.apiKey = apiKey;
   }
 
-  async search(query: string, state?: string) {
-    return searchWithPagination(query, this.apiKey, state);
+  async search(query: string, page?: number, state?: State) {
+    return fetchSearch(query, this.apiKey, page, state);
+  }
+
+  async searchAllResults(query: string, state?: State) {
+    return searchAllPages(query, this.apiKey, state);
   }
 
   async getBill(billId: number) {

@@ -38,11 +38,11 @@ export const fetchMasterListByState = async (state: string, apiKey: string) => {
   }
 };
 
-const fetchSearch = async (
+export const fetchSearch = async (
   query: string,
   apiKey: string,
-  page: number,
-  state: string
+  page: number = 1,
+  state: string = 'ALL'
 ): Promise<SearchResponse | undefined> => {
   const op = 'getSearch';
   try {
@@ -50,18 +50,7 @@ const fetchSearch = async (
       `${LEGISCAN_BASE_URL}/?key=${apiKey}&op=${op}&state=${state}&page=${page}&query=${query}`
     ).then(res => res.json());
 
-    const allBillResults = Object.keys(res.searchresult)
-      .filter(key => key !== 'summary')
-      .reduce((arr, key) => {
-        const result = res.searchresult[key];
-        arr.push(result);
-        return arr;
-      }, [] as SearchResult[]);
-
-    return {
-      summary: res.searchresult.summary,
-      results: allBillResults,
-    };
+    return res;
   } catch (error) {
     console.log('Error fetching', query, 'error:', error);
     return undefined;
@@ -92,7 +81,7 @@ async function getPaginatedSearchResults(
   );
 }
 
-export const searchWithPagination = async (
+export const searchAllPages = async (
   query: string,
   apiKey: string,
   state: string = 'ALL'

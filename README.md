@@ -27,7 +27,15 @@ legiscan
 #### Queries
 
 ```
-search(query, state)
+search(query, page, state)
+```
+
+- query: string
+- page?: number (defaults to 1)
+- state?: string (defaults to 'ALL')
+
+```
+searchAllResults(query, state)
 ```
 
 - query: string
