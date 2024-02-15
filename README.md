@@ -11,6 +11,8 @@ Easily interact with the LegiScan API with javascript. Get your [LegiScan API Ke
 #### Quickstart
 
 ```
+import { Legiscan } from 'legiscan'
+
 const apiKey = 'your-api-key'
 const legiscan = new Legiscan(apiKey)
 
