@@ -4,11 +4,13 @@ import {
   fetchBillTextByDocId,
   fetchBills,
   fetchMasterListByState,
+} from './handlers/index.js';
+import {
   fetchSearch,
   fetchSearchRaw,
   searchAllPages,
-} from './handlers/index.js';
-import { State } from './handlers/types.js';
+} from './handlers/search.js';
+import { SearchAllParams, SearchParams } from './types.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -17,15 +19,15 @@ export class Legiscan {
     this.apiKey = apiKey;
   }
 
-  async search(query: string, page?: number, year?: number, state?: State, id?: number) {
+  async search({ query, page, year, state, id }: SearchParams) {
     return fetchSearch(query, this.apiKey, page, year, state, id);
   }
 
-  async searchAllResults(query: string, year?: number, state?: State, id?: number) {
+  async searchAllResults({ query, year, state, id }: SearchAllParams) {
     return searchAllPages(query, this.apiKey, year, state, id);
   }
 
-  async getSearchRaw(query: string, page?: number, year?: number, state?: State, id?: number) {
+  async getSearchRaw({ query, page, year, state, id }: SearchParams) {
     return fetchSearchRaw(query, this.apiKey, page, year, state, id);
   }
 

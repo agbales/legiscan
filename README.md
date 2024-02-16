@@ -24,36 +24,69 @@ legiscan
   .catch(error => console.error(error))
 ```
 
-#### Queries
+## Queries
 
-```
-search(query, page, year, state, id)
-```
+### Search
 
-- query: string
-- page?: number (defaults to 1)
-- year?: number (1=all, 2=current, 3=recent, 4=prior, >1900=exact [Default: 2])
-- state?: string (defaults to 'ALL')
-- id?: number (session number)
+#### search
 
-```
-searchAllResults(query, year, state, id)
-```
+Full text search, returning 50 results per page.
 
-- query: string
-- year?: number (1=all, 2=current, 3=recent, 4=prior, >1900=exact [Default: 2])
-- state?: string (defaults to 'ALL')
-- id?: number (session number)
-
-```
-searchRaw(query, page, year, state, id)
+```javascript
+search({
+  query: string,
+  page?: number,
+  year?: number,
+  state?: string,
+  id?: number
+})
 ```
 
-- query: string
-- page?: number (defaults to 1)
-- year?: number (1=all, 2=current, 3=recent, 4=prior, >1900=exact [Default: 2])
-- state?: string (defaults to 'ALL')
-- id?: number (session number)
+- `query` required search query
+- `page` default: 1
+- `year` default: 2 -- 1=all, 2=current, 3=recent, 4=prior, >1900=exact
+- `state` default: 'ALL'
+- `id` session number
+
+#### searchAllResults
+
+Full text search returning all pages. Caution: this can use a significant amount of queries if your search criteria is broad. It will perform a fetch for every page, consisting of 50 results each.
+
+```javascript
+searchAllResults({
+  query: string,
+  year?: number,
+  state?: string,
+  id?: number
+})
+```
+
+- `query` required search query
+- `year` default: 2 -- 1=all, 2=current, 3=recent, 4=prior, >1900=exact
+- `state` default: 'ALL'
+- `id` session number
+
+#### searchRaw
+
+Full text search returning 2000 bills per page. The objects returned do not include descriptions and titles like the full text search. Instead, they provide `bill_id` and `change_hash` along with a `relevance` score.
+
+```
+searchRaw({
+  query: string,
+  page?: number,
+  year?: number,
+  state?: string,
+  id?: number
+})
+```
+
+- `query` required search query
+- `page` default: 1
+- `year` default: 2 -- 1=all, 2=current, 3=recent, 4=prior, >1900=exact
+- `state` default: 'ALL'
+- `id` session number
+
+### Bills
 
 ```
 getBill(billId)
@@ -67,6 +100,8 @@ getBills(billIds)
 
 - billIds: number[]
 
+### Bill Texts
+
 ```
 getBillTextByBillId(billId)
 ```
@@ -78,6 +113,8 @@ getBillTextByDocId(docId)
 ```
 
 - docId: number
+
+### State bill lists
 
 ```
 getMasterListByState(state)
