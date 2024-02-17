@@ -49,16 +49,16 @@ export class Legiscan {
   // Search
   // -------------
 
-  async search({ query, page, year, state, id }: SearchParams) {
-    return fetchSearch(query, this.apiKey, page, year, state, id);
+  async search({ query, page, year, state, sessionId }: SearchParams) {
+    return fetchSearch(query, this.apiKey, page, year, state, sessionId);
   }
 
-  async searchAllResults({ query, year, state, id }: SearchAllParams) {
-    return searchAllPages(query, this.apiKey, year, state, id);
+  async searchAllResults({ query, year, state, sessionId }: SearchAllParams) {
+    return searchAllPages(query, this.apiKey, year, state, sessionId);
   }
 
-  async getSearchRaw({ query, page, year, state, id }: SearchParams) {
-    return fetchSearchRaw(query, this.apiKey, page, year, state, id);
+  async getSearchRaw({ query, page, year, state, sessionId }: SearchParams) {
+    return fetchSearchRaw(query, this.apiKey, page, year, state, sessionId);
   }
 
   // -------------

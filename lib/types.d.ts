@@ -4,7 +4,7 @@ export type SearchParams = {
     page?: number;
     year?: number;
     state?: State;
-    id?: number;
+    sessionId?: number;
 };
 export type MonitorAction = 'monitor' | 'remove' | 'set';
 export type MonitorStance = 'watch' | 'support' | 'oppose';
