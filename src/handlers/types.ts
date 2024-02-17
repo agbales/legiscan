@@ -41,7 +41,7 @@ export type SearchResponse = {
   results: SearchResult[];
 };
 
-type Session = {
+export type Session = {
   session_id: number;
   state_id: number;
   year_start: number;
@@ -168,6 +168,27 @@ export type LegiscanBill = {
   amendments: [];
   supplements: [];
   calendar: CalendarEvent[];
+};
+
+export type MasterList = {
+  [key: string]: {
+    bill_id: number;
+    number: string;
+    change_hash: string;
+    url: string;
+    status_date: string;
+    status: string;
+    last_action_date: string;
+    last_action: string;
+  };
+};
+
+export type MasterListRaw = {
+  [key: string]: {
+    bill_id: number;
+    number: string;
+    change_hash: string;
+  };
 };
 
 export type State =

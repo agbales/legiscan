@@ -25,6 +25,10 @@ export class Legiscan {
     this.apiKey = apiKey;
   }
 
+  // -------------
+  // Search
+  // -------------
+
   async search({ query, page, year, state, id }: SearchParams) {
     return fetchSearch(query, this.apiKey, page, year, state, id);
   }
@@ -36,6 +40,10 @@ export class Legiscan {
   async getSearchRaw({ query, page, year, state, id }: SearchParams) {
     return fetchSearchRaw(query, this.apiKey, page, year, state, id);
   }
+
+  // -------------
+  // Bills
+  // -------------
 
   async getBill(billId: number) {
     return fetchBill(billId, this.apiKey);
@@ -52,6 +60,10 @@ export class Legiscan {
   async getBillTextByDocId(docId: number) {
     return fetchBillTextByDocId(docId, this.apiKey);
   }
+
+  // -------------
+  // Masterlists
+  // -------------
 
   async getMasterListByState(state: string) {
     return fetchMasterListByState(state, this.apiKey);

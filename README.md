@@ -24,9 +24,7 @@ legiscan
   .catch(error => console.error(error))
 ```
 
-## Queries
-
-### Search
+## Search
 
 #### search
 
@@ -70,7 +68,7 @@ searchAllResults({
 
 Full text search returning 2000 bills per page. The objects returned do not include descriptions and titles like the full text search. Instead, they provide `bill_id` and `change_hash` along with a `relevance` score.
 
-```
+```javascript
 searchRaw({
   query: string,
   page?: number,
@@ -122,7 +120,29 @@ getBillTextByDocId(docId)
 
 - docId: number
 
-### State bill lists
+### Materlists
+
+Get get a list of bill summaries by state or session ID. The response is a `MasterList` object:
+
+```typescript
+{
+  "0": {
+      bill_id: number;
+      number: string;
+      change_hash: string;
+      url: string;
+      status_date: string;
+      status: string;
+      last_action_date: string;
+      last_action: string;
+    }
+  },
+  "1": {
+    ...
+  },
+  ...
+}
+```
 
 #### getMasterListByState
 
@@ -130,6 +150,36 @@ Returns a list of summary bill data in the current state session.
 
 ```
 getMasterListByState(state)
+```
+
+- `state` string (ex: AL, OK, US, etc.)
+
+#### getMasterListBySessionId
+
+Returns a list of summary bill data in a specific session.
+
+```
+getMasterListBySessionId(sessionId)
+```
+
+- `sessionId` number
+
+### Materlists Raw
+
+Get a list of bill change hash data by state or session ID. The response is a `MasterListRaw` object:
+
+```typescript
+{
+  "0": {
+    bill_id: number;
+    number: string;
+    change_hash: string;
+  },
+  "1": {
+    ...
+  },
+  ...
+}
 ```
 
 #### getMasterListByStateRaw
@@ -140,17 +190,9 @@ Returns a list of bill `change_hash` data in the current state session.
 getMasterListByStateRaw(state)
 ```
 
-- state: string (ex: AL, OK, TX, US, etc.)
+- `state`: string (ex: AL, OK, US, etc.)
 
-#### getMasterListBySessionId
-
-Returns a list of summary bill data in a specific session.
-
-```
-getMasterListBySessionId(sessionId)
-```
-
-- sessionId: number
+- `sessionId`: number
 
 #### getMasterListBySessionIdRaw
 
@@ -160,4 +202,4 @@ Returns a list of bill `change_hash` data in the specific session.
 getMasterListBySessionIdRaw(sessionId)
 ```
 
-- sessionId: number
+- `sessionId`: number
