@@ -16,7 +16,12 @@ import {
   fetchMasterListBySessionIdRaw,
 } from './handlers/masterLists.js';
 import { fetchAmendmentById } from './handlers/amendments.js';
-import { SearchAllParams, SearchParams } from './types.js';
+import {
+  MonitorAction,
+  MonitorStance,
+  SearchAllParams,
+  SearchParams,
+} from './types.js';
 import { fetchSessionListByState } from './handlers/sessions.js';
 import { fetchSupplementById } from './handlers/supplements.js';
 import { fetchRollCallById } from './handlers/rollcalls.js';
@@ -27,6 +32,11 @@ import {
   fetchPersonWithSponsoredBillsById,
 } from './handlers/people.js';
 import { fetchDataset, fetchDatasetList } from './handlers/datasets.js';
+import {
+  fetchMonitorList,
+  fetchMonitorListRaw,
+  setMonitorByListAndAction,
+} from './handlers/monitor.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -149,5 +159,30 @@ export class Legiscan {
 
   async getDatasetList(state?: State, year?: number) {
     return fetchDatasetList(this.apiKey, state, year);
+  }
+
+  // -------------
+  // Monitored
+  // -------------
+
+  async getMonitorList(record: string) {
+    return fetchMonitorList(record, this.apiKey);
+  }
+
+  async getMonitorListRaw(record: string) {
+    return fetchMonitorListRaw(record, this.apiKey);
+  }
+
+  async setMonitor(
+    list: string,
+    action: MonitorAction,
+    stance?: MonitorStance
+  ) {
+    return setMonitorByListAndAction({
+      list,
+      action,
+      stance,
+      apiKey: this.apiKey,
+    });
   }
 }

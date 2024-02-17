@@ -475,3 +475,39 @@ getDatasetList({
   year?: number
 })
 ```
+
+### Monitor
+
+If you're tracking bills with your LegiScan account, you can get and set your list with the following.
+
+#### getMonitorList
+
+Returns the GAITS monitor list of summary bill data being tracked by the account associated with the API key.
+
+```
+getMonitorList(record)
+```
+
+- `record` string (optional) current or archived, 2010 >= exact year [Default: current]
+
+#### getMonitorListRaw
+
+Returns the GAITS monitor list of bill `change_hash` data being tracked by the account associated with the API key.
+
+```
+getMonitorListRaw(record)
+```
+
+- `record` string (optional) current or archived, 2010 >= exact year [Default: current]
+
+#### setMonitor
+
+Returns a master list of bill `change_hash` data in the provided session or current state session.
+
+```
+setMonitor(list, action, stance)
+```
+
+- `list` comma separated string list of `bill_id` to operate on
+- `action` string `monitor`, `remove`, or `set` action
+- `stance` string (Optional) position on the bill `watch`, `support`, or `oppose` [Default: watch]

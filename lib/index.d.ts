@@ -1,4 +1,4 @@
-import { SearchAllParams, SearchParams } from './types.js';
+import { MonitorAction, MonitorStance, SearchAllParams, SearchParams } from './types.js';
 import { State } from './handlers/types.js';
 export declare class Legiscan {
     private apiKey;
@@ -23,4 +23,7 @@ export declare class Legiscan {
     getPersonWithSponsoredBillsById(peopleId: number): Promise<import("./handlers/types.js").SponsoredListResponse | undefined>;
     getDataset(sessionId: number, accessKey: string): Promise<import("./handlers/types.js").Dataset | undefined>;
     getDatasetList(state?: State, year?: number): Promise<import("./handlers/types.js").Dataset[] | undefined>;
+    getMonitorList(record: string): Promise<import("./types.js").MonitorListResponse | undefined>;
+    getMonitorListRaw(record: string): Promise<import("./types.js").MonitorListRawResponse | undefined>;
+    setMonitor(list: string, action: MonitorAction, stance?: MonitorStance): Promise<import("./types.js").SetMonitorResponse | undefined>;
 }
