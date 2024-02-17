@@ -15,9 +15,10 @@ import {
   fetchMasterListBySessionId,
   fetchMasterListBySessionIdRaw,
 } from './handlers/masterLists.js';
-
-import { SearchAllParams, SearchParams } from './types.js';
 import { fetchAmendmentById } from './handlers/amendments.js';
+import { SearchAllParams, SearchParams } from './types.js';
+import { fetchSessionListByState } from './handlers/sessions.js';
+import { State } from './handlers/types.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -66,11 +67,11 @@ export class Legiscan {
   // Masterlists
   // -------------
 
-  async getMasterListByState(state: string) {
+  async getMasterListByState(state: State) {
     return fetchMasterListByState(state, this.apiKey);
   }
 
-  async getMasterListByStateRaw(state: string) {
+  async getMasterListByStateRaw(state: State) {
     return fetchMasterListByStateRaw(state, this.apiKey);
   }
 
@@ -88,5 +89,13 @@ export class Legiscan {
 
   async getAmendmentById(amendmentId: number) {
     return fetchAmendmentById(amendmentId, this.apiKey);
+  }
+
+  // -------------
+  // Sessions
+  // -------------
+
+  async getSessionListByState(state: State) {
+    return fetchSessionListByState(state, this.apiKey);
   }
 }

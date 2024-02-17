@@ -230,3 +230,32 @@ getAmendmentById(amendmentId)
 ```
 
 - `amendmentId`: number
+
+### Sessions
+
+Get a list of sessions in a given state abbreviation. Returns an array of session objects:
+
+```typescript
+[
+  {
+    session_id: number;
+    state_id: number;
+    year_start: number;
+    year_end: number;
+    prefile: number;
+    sine_die: number;
+    prior: number;
+    special: number;
+    session_tag: string;
+    session_title: string;
+    session_name: string;
+  },
+  ...
+]
+```
+
+```
+getSessionListByState(state)
+```
+
+- `state`: string (ex: AL, OK, US, etc.) Default: 'ALL'
