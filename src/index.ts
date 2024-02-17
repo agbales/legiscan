@@ -19,6 +19,7 @@ import { fetchAmendmentById } from './handlers/amendments.js';
 import { SearchAllParams, SearchParams } from './types.js';
 import { fetchSessionListByState } from './handlers/sessions.js';
 import { State } from './handlers/types.js';
+import { fetchSupplementById } from './handlers/supplements.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -97,5 +98,13 @@ export class Legiscan {
 
   async getSessionListByState(state: State) {
     return fetchSessionListByState(state, this.apiKey);
+  }
+
+  // -------------
+  // Supplements
+  // -------------
+
+  async getSupplementById(supplementId: number) {
+    return fetchSupplementById(supplementId, this.apiKey);
   }
 }

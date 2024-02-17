@@ -259,3 +259,30 @@ getSessionListByState(state)
 ```
 
 - `state`: string (ex: AL, OK, US, etc.) Default: 'ALL'
+
+### Supplements
+
+Get a supplement text by ID. The supplement text itself is base64 encoded to allow for binary PDF/Word transfers. Returns a supplement object:
+
+```typescript
+{
+  supplement_id: number;
+  bill_id: number;
+  date: string;
+  type_id: number;
+  type: string;
+  title: string;
+  description: string;
+  mime: string;
+  mime_id: number;
+  supplement_size: number;
+  supplement_hash: string;
+  doc: string;
+}
+```
+
+```
+getSupplementById(supplementId)
+```
+
+- `supplementId` number

@@ -149,6 +149,21 @@ export type Amendment = {
   amendment_hash: string;
 };
 
+export type Supplement = {
+  supplement_id: number;
+  bill_id: number;
+  date: string;
+  type_id: number;
+  type: string;
+  title: string;
+  description: string;
+  mime: string;
+  mime_id: number;
+  supplement_size: number;
+  supplement_hash: string;
+  doc: string;
+};
+
 export type LegiscanBill = {
   bill_id: number;
   change_hash: string;
@@ -180,8 +195,8 @@ export type LegiscanBill = {
   subjects: Subject[];
   texts: Text[];
   votes: [];
-  amendments: [];
-  supplements: [];
+  amendments: Amendment[];
+  supplements: Supplement[];
   calendar: CalendarEvent[];
 };
 
