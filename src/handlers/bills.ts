@@ -24,19 +24,6 @@ export const fetchBills = async (
   return await Promise.all(billIds.map(id => fetchBill(id, apiKey)));
 };
 
-export const fetchMasterListByState = async (state: string, apiKey: string) => {
-  const op = 'getMasterListRaw';
-  try {
-    const stateBills = await fetch(
-      `${LEGISCAN_BASE_URL}/?key=${apiKey}&op=${op}&state=${state}`
-    ).then(res => res.json());
-    return stateBills;
-  } catch (error) {
-    console.log('Error fetching', state, 'error:', error);
-    return undefined;
-  }
-};
-
 export const fetchBillTextByDocId = async (
   doc_id: number,
   apiKey: string

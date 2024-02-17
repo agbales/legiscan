@@ -10,4 +10,7 @@ export declare class Legiscan {
     getBillTextByBillId(billId: number): Promise<import("./handlers/types.js").BillText | undefined>;
     getBillTextByDocId(docId: number): Promise<import("./handlers/types.js").BillText | undefined>;
     getMasterListByState(state: string): Promise<any>;
+    getMasterListByStateRaw(state: string): Promise<any>;
+    getMasterListBySessionId(sessionId: number): Promise<any>;
+    getMasterListBySessionIdRaw(sessionId: number): Promise<any>;
 }

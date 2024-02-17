@@ -3,13 +3,19 @@ import {
   fetchBillTextByBillId,
   fetchBillTextByDocId,
   fetchBills,
-  fetchMasterListByState,
-} from './handlers/index.js';
+} from './handlers/bills.js';
 import {
   fetchSearch,
   fetchSearchRaw,
   searchAllPages,
 } from './handlers/search.js';
+import {
+  fetchMasterListByState,
+  fetchMasterListByStateRaw,
+  fetchMasterListBySessionId,
+  fetchMasterListBySessionIdRaw,
+} from './handlers/masterLists.js';
+
 import { SearchAllParams, SearchParams } from './types.js';
 
 export class Legiscan {
@@ -49,5 +55,17 @@ export class Legiscan {
 
   async getMasterListByState(state: string) {
     return fetchMasterListByState(state, this.apiKey);
+  }
+
+  async getMasterListByStateRaw(state: string) {
+    return fetchMasterListByStateRaw(state, this.apiKey);
+  }
+
+  async getMasterListBySessionId(sessionId: number) {
+    return fetchMasterListBySessionId(sessionId, this.apiKey);
+  }
+
+  async getMasterListBySessionIdRaw(sessionId: number) {
+    return fetchMasterListBySessionIdRaw(sessionId, this.apiKey);
   }
 }

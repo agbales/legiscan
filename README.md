@@ -124,8 +124,40 @@ getBillTextByDocId(docId)
 
 ### State bill lists
 
+#### getMasterListByState
+
+Returns a list of summary bill data in the current state session.
+
 ```
 getMasterListByState(state)
 ```
 
+#### getMasterListByStateRaw
+
+Returns a list of bill `change_hash` data in the current state session.
+
+```
+getMasterListByStateRaw(state)
+```
+
 - state: string (ex: AL, OK, TX, US, etc.)
+
+#### getMasterListBySessionId
+
+Returns a list of summary bill data in a specific session.
+
+```
+getMasterListBySessionId(sessionId)
+```
+
+- sessionId: number
+
+#### getMasterListBySessionIdRaw
+
+Returns a list of bill `change_hash` data in the specific session.
+
+```
+getMasterListBySessionIdRaw(sessionId)
+```
+
+- sessionId: number
