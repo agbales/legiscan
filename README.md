@@ -356,3 +356,28 @@ getPersonById(peopleId)
 ```
 
 - `peopleId` number
+
+```
+getPeopleBySessionId(sessionId)
+```
+
+- `sessionId` number
+
+`getPeopleBySessionId` response includes session and people data:
+
+```
+  session: {
+    session_id: number;
+    state_id: number;
+    year_start: number;
+    year_end: number;
+    special: number;
+    prefile: number;
+    prior: number;
+    sine_die: number;
+    session_name: string;
+    name: string;
+    dataset_hash: string;
+  },
+  people: Person[];
+```
