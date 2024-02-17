@@ -41,6 +41,28 @@ export type SearchResponse = {
   results: SearchResult[];
 };
 
+type Vote = {
+  people_id: number;
+  vote_id: number;
+  vote_text: string;
+};
+
+export type RollCall = {
+  roll_call_id: number;
+  bill_id: number;
+  date: string;
+  desc: string;
+  yea: number;
+  nay: number;
+  nv: number;
+  absent: number;
+  total: number;
+  passed: number;
+  chamber: string;
+  chamber_id: number;
+  votes: Vote[];
+};
+
 export type Session = {
   session_id: number;
   state_id: number;

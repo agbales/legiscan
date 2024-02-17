@@ -286,3 +286,37 @@ getSupplementById(supplementId)
 ```
 
 - `supplementId` number
+
+### Roll Calls
+
+Get roll call details, including a summary and individual votes with `people_id`. Returns a `RollCall` object:
+
+```typescript
+{
+  roll_call_id: number;
+  bill_id: number;
+  date: string;
+  desc: string;
+  yea: number;
+  nay: number;
+  nv: number;
+  absent: number;
+  total: number;
+  passed: number;
+  chamber: string;
+  chamber_id: number;
+  votes: [{
+    people_id: number;
+    vote_id: number;
+    vote_text: string;
+  },
+  ...
+  ];
+}
+```
+
+```
+getRollCallById(rollCallId)
+```
+
+- `rollCallId` number

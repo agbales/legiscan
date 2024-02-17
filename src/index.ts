@@ -18,8 +18,9 @@ import {
 import { fetchAmendmentById } from './handlers/amendments.js';
 import { SearchAllParams, SearchParams } from './types.js';
 import { fetchSessionListByState } from './handlers/sessions.js';
-import { State } from './handlers/types.js';
 import { fetchSupplementById } from './handlers/supplements.js';
+import { fetchRollCallById } from './handlers/rollcalls.js';
+import { State } from './handlers/types.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -106,5 +107,13 @@ export class Legiscan {
 
   async getSupplementById(supplementId: number) {
     return fetchSupplementById(supplementId, this.apiKey);
+  }
+
+  // -------------
+  // Roll Calls
+  // -------------
+
+  async getRollCallById(rollCallId: number) {
+    return fetchRollCallById(rollCallId, this.apiKey);
   }
 }
