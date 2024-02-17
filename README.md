@@ -1,6 +1,6 @@
 # legiscan
 
-Easily interact with the LegiScan API with javascript. Get your [LegiScan API Key](https://legiscan.com/legiscan) and follow the instructions below.
+Easily interact with the [LegiScan API]() with javascript. Get your [LegiScan API Key](https://legiscan.com/legiscan) and follow the instructions below.
 
 ## Installation
 
@@ -102,9 +102,17 @@ getBills(billIds)
 
 ### Bill Texts
 
+#### getBillTextByBillId
+
+Fetches the latest version of a bill's text, if available. This performs two API requests: one to fetch the bill and another to fetch the latest text. If you already know the `doc_id`, use `getBillTextByDocId`.
+
 ```
 getBillTextByBillId(billId)
 ```
+
+#### getBillTextByDocId
+
+Get a bill text by its `doc_id`. The response includes the doc's date, draft revision information and MIME type. The bill text itself is base64 encoded to allow for binary PDF/Word transfers.
 
 - billId: number
 
