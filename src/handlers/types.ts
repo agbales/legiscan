@@ -87,6 +87,62 @@ export type RollCall = {
   votes: Vote[];
 };
 
+export type SessionPeopleResponse = {
+  session: {
+    session_id: number;
+    state_id: number;
+    year_start: number;
+    year_end: number;
+    special: number;
+    prefile: number;
+    prior: number;
+    sine_die: number;
+    session_name: string;
+    name: string;
+    dataset_hash: string;
+  };
+  people: Person[];
+};
+
+type SponsoredListSession = {
+  session_id: number;
+  session_name: string;
+};
+
+type SponsoredListBill = {
+  session_id: number;
+  bill_id: number;
+  number: string;
+};
+
+export type SponsoredListResponse = {
+  sponsor: {
+    people_id: number;
+    person_hash: string;
+    state_id: number;
+    party_id: string;
+    party: string;
+    role_id: number;
+    role: string;
+    name: string;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    suffix: string;
+    nickname: string;
+    district: string;
+    ftm_eid: string;
+    votesmart_id: number;
+    opensecrets_id: string;
+    knowwho_pid: number;
+    ballotpedia: string;
+    committee_sponsor: number;
+    committee_id: number;
+  };
+  sessions: SponsoredListSession[];
+  bills: SponsoredListBill[];
+};
+
 export type Session = {
   session_id: number;
   state_id: number;

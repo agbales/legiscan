@@ -21,7 +21,11 @@ import { fetchSessionListByState } from './handlers/sessions.js';
 import { fetchSupplementById } from './handlers/supplements.js';
 import { fetchRollCallById } from './handlers/rollcalls.js';
 import { State } from './handlers/types.js';
-import { fetchPeopleBySessionId, fetchPersonById } from './handlers/people.js';
+import {
+  fetchPeopleBySessionId,
+  fetchPersonById,
+  fetchPersonWithSponsoredBillsById,
+} from './handlers/people.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -128,5 +132,9 @@ export class Legiscan {
 
   async getSessionPeople(sessionId: number) {
     return fetchPeopleBySessionId(sessionId, this.apiKey);
+  }
+
+  async getPersonWithSponsoredBillsById(peopleId: number) {
+    return fetchPersonWithSponsoredBillsById(peopleId, this.apiKey);
   }
 }

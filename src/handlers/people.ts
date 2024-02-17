@@ -1,5 +1,9 @@
 import { LEGISCAN_BASE_URL } from '../config.js';
-import { Person, SessionPeopleResponse } from './types.js';
+import {
+  Person,
+  SessionPeopleResponse,
+  SponsoredListResponse,
+} from './types.js';
 
 export const fetchPersonById = async (
   peopleId: number,
@@ -31,6 +35,23 @@ export const fetchPeopleBySessionId = async (
     return res.sessionpeople;
   } catch (error) {
     console.log('Error fetching', sessionId, 'error:', error);
+    return undefined;
+  }
+};
+
+export const fetchPersonWithSponsoredBillsById = async (
+  peopleId: number,
+  apiKey: string
+): Promise<SponsoredListResponse | undefined> => {
+  const op = 'getSponsoredList';
+
+  try {
+    const res = await fetch(
+      `${LEGISCAN_BASE_URL}/?key=${apiKey}&op=${op}&id=${peopleId}`
+    ).then(res => res.json());
+    return res.sponsoredbills;
+  } catch (error) {
+    console.log('Error fetching', peopleId, 'error:', error);
     return undefined;
   }
 };

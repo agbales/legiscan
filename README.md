@@ -357,6 +357,10 @@ getPersonById(peopleId)
 
 - `peopleId` number
 
+#### getPeopleBySessionId
+
+Get a list of individuals active in a given session.
+
 ```
 getPeopleBySessionId(sessionId)
 ```
@@ -380,4 +384,53 @@ getPeopleBySessionId(sessionId)
     dataset_hash: string;
   },
   people: Person[];
+```
+
+#### getPersonWithSponsoredBills
+
+Get a list of bills sponsored by an individual legislator.
+
+```
+getPersonWithSponsoredBills(peopleId)
+```
+
+- `peopleId` number
+
+Returns details about a person, including their bills they've sponsored:
+
+```typescript
+{
+  sponsor: {
+    people_id: number;
+    person_hash: string;
+    state_id: number;
+    party_id: string;
+    party: string;
+    role_id: number;
+    role: string;
+    name: string;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    suffix: string;
+    nickname: string;
+    district: string;
+    ftm_eid: string;
+    votesmart_id: number;
+    opensecrets_id: string;
+    knowwho_pid: number;
+    ballotpedia: string;
+    committee_sponsor: number;
+    committee_id: number;
+  };
+  sessions: [{
+    session_id: number;
+    session_name: string;
+  }],
+  bills: [{
+    session_id: number;
+    bill_id: number;
+    number: string;
+  }]
+}
 ```
