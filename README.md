@@ -1,14 +1,12 @@
 # legiscan
 
-Easily interact with the [LegiScan API]() with javascript. Get your [LegiScan API Key](https://legiscan.com/legiscan) and follow the instructions below.
+Easily interact with the [LegiScan API](https://legiscan.com/legiscan) with javascript. Get an API Key and follow the instructions below. The legiscan package is a wrapper around the API functionality documented in [this manual](https://legiscan.com/gaits/documentation/legiscan).
 
 ## Installation
 
 `npm install legiscan`
 
-## Usage
-
-#### Quickstart
+## Quickstart
 
 ```
 import { Legiscan } from 'legiscan'
@@ -24,6 +22,32 @@ legiscan
   .catch(error => console.error(error))
 ```
 
+## Overview
+
+[search](####search)
+[searchAllResults](####searchAllResults)
+[searchRaw](####searchRaw)
+[getBill](####getBill)
+[getBills](####getBills)
+[getBillTextByBillId](####getBillTextByBillId)
+[getBillTextByDocId](####getBillTextByDocId)
+[getMasterListByState](####getMasterListByState)
+[getMasterListBySessionId](####getMasterListBySessionId)
+[getMasterListByStateRaw](####getMasterListByStateRaw)
+[getMasterListBySessionIdRaw](####getMasterListBySessionIdRaw)
+[getAmendmentById](####getAmendmentById)
+[getSessionListByState](####getSessionListByState)
+[getSupplementById](####getSupplementById)
+[getRollCallById](####getRollCallById)
+[getPersonById](####getPersonById)
+[getPeopleBySessionId](####getPeopleBySessionId)
+[getPersonWithSponsoredBills](####getPersonWithSponsoredBills)
+[getDataset](####getDataset)
+[getDatasetList](####getDatasetList)
+[getMonitorList](####getMonitorList)
+[getMonitorListRaw](####getMonitorListRaw)
+[setMonitor](####setMonitor)
+
 ## Search
 
 #### search
@@ -36,7 +60,7 @@ search({
   page?: number,
   year?: number,
   state?: string,
-  id?: number
+  sessionId?: number
 })
 ```
 
@@ -44,7 +68,7 @@ search({
 - `page` default: 1
 - `year` default: 2 -- 1=all, 2=current, 3=recent, 4=prior, >1900=exact
 - `state` default: 'ALL'
-- `id` session number
+- `sessionId` session number
 
 #### searchAllResults
 
@@ -55,14 +79,14 @@ searchAllResults({
   query: string,
   year?: number,
   state?: string,
-  id?: number
+  sessionId?: number
 })
 ```
 
 - `query` required search query
-- `year` default: 2 -- 1=all, 2=current, 3=recent, 4=prior, >1900=exact
-- `state` default: 'ALL'
-- `id` session number
+- `year` number (optional) `1=all, 2=current, 3=recent, 4=prior, >1900=exact` [Default: 2]
+- `state` string (optional) [Default: 'ALL']
+- `sessionId` number (optional)
 
 #### searchRaw
 
@@ -79,18 +103,66 @@ searchRaw({
 ```
 
 - `query` required search query
-- `page` default: 1
-- `year` default: 2 -- 1=all, 2=current, 3=recent, 4=prior, >1900=exact
+- `page` number (optional) [Default: 1]
+- `year` number (optional) `1=all, 2=current, 3=recent, 4=prior, >1900=exact` [Default: 2]
 - `state` default: 'ALL'
-- `id` session number
+- `id` number (optional)
 
 ### Bills
+
+Fetch bills by their unique IDs. The `LegiscanBill` object:
+
+```
+{
+  bill_id: number;
+  change_hash: string;
+  session_id: number;
+  session: Session;
+  url: string;
+  state_link: string;
+  completed: number;
+  status: StatusKey;
+  status_date: string;
+  progress: ProgressEvent[];
+  state: string;
+  state_id: number;
+  bill_number: string;
+  bill_type: string;
+  bill_type_id: string;
+  body: string;
+  body_id: number;
+  current_body: string;
+  current_body_id: number;
+  title: string;
+  description: string;
+  pending_committee_id: number;
+  committee: Committee;
+  referrals: Referral[];
+  history: HistoryAction[];
+  sponsors: Sponsor[];
+  sasts: [];
+  subjects: Subject[];
+  texts: Text[];
+  votes: [];
+  amendments: Amendment[];
+  supplements: Supplement[];
+  calendar: CalendarEvent[];
+}
+```
+
+#### getBill
+
+Get a single LegiScan bill.
 
 ```
 getBill(billId)
 ```
 
 - billId: number
+
+#### getBills
+
+Get bills, providing an array of bill IDs.
 
 ```
 getBills(billIds)
@@ -225,6 +297,8 @@ Get an amendment by its ID. The amendment text itself is base64 encoded to allow
 }
 ```
 
+#### getAmendmentById
+
 ```
 getAmendmentById(amendmentId)
 ```
@@ -254,6 +328,8 @@ Get a list of sessions in a given state abbreviation. Returns an array of sessio
 ]
 ```
 
+#### getSessionListByState
+
 ```
 getSessionListByState(state)
 ```
@@ -280,6 +356,8 @@ Get a supplement text by ID. The supplement text itself is base64 encoded to all
   doc: string;
 }
 ```
+
+#### getSupplementById
 
 ```
 getSupplementById(supplementId)
@@ -314,6 +392,8 @@ Get roll call details, including a summary and individual votes with `people_id`
   ];
 }
 ```
+
+#### getRollCallById
 
 ```
 getRollCallById(rollCallId)
@@ -350,6 +430,8 @@ Get information about people related to bills. Returns a `Person` object:
   committee_id: number;
 }
 ```
+
+#### getPersonById
 
 ```
 getPersonById(peopleId)
