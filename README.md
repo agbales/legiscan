@@ -320,3 +320,39 @@ getRollCallById(rollCallId)
 ```
 
 - `rollCallId` number
+
+### People
+
+Get information about people related to bills. Returns a `Person` object:
+
+```typescript
+{
+  people_id: number;
+  person_hash: string;
+  state_id: number;
+  party_id: string;
+  party: string;
+  role_id: number;
+  role: string;
+  name: string;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  suffix: string;
+  nickname: string;
+  district: string;
+  ftm_eid: number;
+  votesmart_id: number;
+  opensecrets_id: string;
+  knowwho_pid: number;
+  ballotpedia: string;
+  committee_sponsor: number;
+  committee_id: number;
+}
+```
+
+```
+getPersonById(peopleId)
+```
+
+- `peopleId` number

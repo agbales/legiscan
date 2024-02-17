@@ -21,6 +21,7 @@ import { fetchSessionListByState } from './handlers/sessions.js';
 import { fetchSupplementById } from './handlers/supplements.js';
 import { fetchRollCallById } from './handlers/rollcalls.js';
 import { State } from './handlers/types.js';
+import { fetchPersonById } from './handlers/people.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -115,5 +116,13 @@ export class Legiscan {
 
   async getRollCallById(rollCallId: number) {
     return fetchRollCallById(rollCallId, this.apiKey);
+  }
+
+  // -------------
+  // People
+  // -------------
+
+  async getPersonById(peopleId: number) {
+    return fetchPersonById(peopleId, this.apiKey);
   }
 }

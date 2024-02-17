@@ -12,6 +12,30 @@ export type SearchResult = {
   title: string;
 };
 
+export type Person = {
+  people_id: number;
+  person_hash: string;
+  state_id: number;
+  party_id: string;
+  party: string;
+  role_id: number;
+  role: string;
+  name: string;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  suffix: string;
+  nickname: string;
+  district: string;
+  ftm_eid: number;
+  votesmart_id: number;
+  opensecrets_id: string;
+  knowwho_pid: number;
+  ballotpedia: string;
+  committee_sponsor: number;
+  committee_id: number;
+};
+
 type MIME64EncodedDocument = string;
 
 export type BillText = {
