@@ -134,6 +134,21 @@ type Text = {
   text_hash: string;
 };
 
+export type Amendment = {
+  amendment_id: number;
+  chamber: string;
+  chamber_id: number;
+  bill_id: number;
+  adopted: number;
+  date: string;
+  title: string;
+  description: string;
+  mime: string;
+  mime_id: number;
+  amendment_size: number;
+  amendment_hash: string;
+};
+
 export type LegiscanBill = {
   bill_id: number;
   change_hash: string;

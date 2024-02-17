@@ -17,6 +17,7 @@ import {
 } from './handlers/masterLists.js';
 
 import { SearchAllParams, SearchParams } from './types.js';
+import { fetchAmendmentById } from './handlers/amendments.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -79,5 +80,13 @@ export class Legiscan {
 
   async getMasterListBySessionIdRaw(sessionId: number) {
     return fetchMasterListBySessionIdRaw(sessionId, this.apiKey);
+  }
+
+  // -------------
+  // Amendments
+  // -------------
+
+  async getAmendmentById(amendmentId: number) {
+    return fetchAmendmentById(amendmentId, this.apiKey);
   }
 }

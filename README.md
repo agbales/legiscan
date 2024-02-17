@@ -152,7 +152,7 @@ Returns a list of summary bill data in the current state session.
 getMasterListByState(state)
 ```
 
-- `state` string (ex: AL, OK, US, etc.)
+- `state` string (ex: AL, OK, US, etc.) Default: 'ALL'
 
 #### getMasterListBySessionId
 
@@ -190,7 +190,7 @@ Returns a list of bill `change_hash` data in the current state session.
 getMasterListByStateRaw(state)
 ```
 
-- `state`: string (ex: AL, OK, US, etc.)
+- `state`: string (ex: AL, OK, US, etc.) Default: 'ALL'
 
 - `sessionId`: number
 
@@ -203,3 +203,30 @@ getMasterListBySessionIdRaw(sessionId)
 ```
 
 - `sessionId`: number
+
+### Amendments
+
+Get an amendment by its ID. The amendment text itself is base64 encoded to allow for binary PDF/Word transfers. Returns an amendment object:
+
+```
+{
+  amendment_id: number;
+  chamber: string;
+  chamber_id: number;
+  bill_id: number;
+  adopted: number;
+  date: string;
+  title: string;
+  description: string;
+  mime: string;
+  mime_id: number;
+  amendment_size: number;
+  amendment_hash: string;
+}
+```
+
+```
+getAmendmentById(amendmentId)
+```
+
+- `amendmentId`: number
