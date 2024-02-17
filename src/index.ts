@@ -26,7 +26,7 @@ import {
   fetchPersonById,
   fetchPersonWithSponsoredBillsById,
 } from './handlers/people.js';
-import { fetchDataset } from './handlers/datasets.js';
+import { fetchDataset, fetchDatasetList } from './handlers/datasets.js';
 
 export class Legiscan {
   private apiKey: string;
@@ -145,5 +145,9 @@ export class Legiscan {
 
   async getDataset(sessionId: number, accessKey: string) {
     return fetchDataset(sessionId, accessKey, this.apiKey);
+  }
+
+  async getDatasetList(state?: State, year?: number) {
+    return fetchDatasetList(this.apiKey, state, year);
   }
 }

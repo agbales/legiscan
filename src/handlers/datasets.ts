@@ -18,3 +18,24 @@ export const fetchDataset = async (
     return undefined;
   }
 };
+
+export const fetchDatasetList = async (
+  apiKey: string,
+  state?: string,
+  year?: number
+): Promise<Dataset[] | undefined> => {
+  const op = 'getDatasetList';
+
+  const stateParams = state ? `&state=${state}` : '';
+  const yearParams = year ? `&year=${year}` : '';
+
+  try {
+    const res = await fetch(
+      `${LEGISCAN_BASE_URL}/?key=${apiKey}&op=${op}${stateParams}${yearParams}`
+    ).then(res => res.json());
+    return res.datasetlist;
+  } catch (error) {
+    console.log('Error fetching', state, year, 'error:', error);
+    return undefined;
+  }
+};

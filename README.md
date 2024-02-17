@@ -447,3 +447,31 @@ getDataset(sessionId, accessKey)
 
 - `sessionId` number
 - `accessKey` string
+
+#### getDatasetList
+
+Get a list of available session datasets, with optional state and year filtering.
+
+Response is an array of `Dataset` objects that include the `session_id` and `access_key` required to call `getDataset`.
+
+```
+[
+  {
+    state_id: number;
+    session_id: number;
+    session_name: string;
+    dataset_hash: string;
+    dataset_date: string;
+    dataset_size: number;
+    mime: string;
+    zip: string;
+  }
+]
+```
+
+```
+getDatasetList({
+  state?: string;
+  year?: number
+})
+```
