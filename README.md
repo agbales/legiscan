@@ -24,29 +24,31 @@ legiscan
 
 ## Overview
 
-[search](####search)
-[searchAllResults](####searchAllResults)
-[searchRaw](####searchRaw)
-[getBill](####getBill)
-[getBills](####getBills)
-[getBillTextByBillId](####getBillTextByBillId)
-[getBillTextByDocId](####getBillTextByDocId)
-[getMasterListByState](####getMasterListByState)
-[getMasterListBySessionId](####getMasterListBySessionId)
-[getMasterListByStateRaw](####getMasterListByStateRaw)
-[getMasterListBySessionIdRaw](####getMasterListBySessionIdRaw)
-[getAmendmentById](####getAmendmentById)
-[getSessionListByState](####getSessionListByState)
-[getSupplementById](####getSupplementById)
-[getRollCallById](####getRollCallById)
-[getPersonById](####getPersonById)
-[getPeopleBySessionId](####getPeopleBySessionId)
-[getPersonWithSponsoredBills](####getPersonWithSponsoredBills)
-[getDataset](####getDataset)
-[getDatasetList](####getDatasetList)
-[getMonitorList](####getMonitorList)
-[getMonitorListRaw](####getMonitorListRaw)
-[setMonitor](####setMonitor)
+| Jump to:                                                       |     |
+| -------------------------------------------------------------- | --- |
+| [search](####search)                                           |     |
+| [searchAllResults](####searchAllResults)                       |     |
+| [searchRaw](####searchRaw)                                     |     |
+| [getBill](####getBill)                                         |     |
+| [getBills](####getBills)                                       |     |
+| [getBillTextByBillId](####getBillTextByBillId)                 |     |
+| [getBillTextByDocId](####getBillTextByDocId)                   |     |
+| [getMasterListByState](####getMasterListByState)               |     |
+| [getMasterListBySessionId](####getMasterListBySessionId)       |     |
+| [getMasterListByStateRaw](####getMasterListByStateRaw)         |     |
+| [getMasterListBySessionIdRaw](####getMasterListBySessionIdRaw) |     |
+| [getAmendmentById](####getAmendmentById)                       |     |
+| [getSessionListByState](####getSessionListByState)             |     |
+| [getSupplementById](####getSupplementById)                     |     |
+| [getRollCallById](####getRollCallById)                         |     |
+| [getPersonById](####getPersonById)                             |     |
+| [getPeopleBySessionId](####getPeopleBySessionId)               |     |
+| [getPersonWithSponsoredBills](####getPersonWithSponsoredBills) |     |
+| [getDataset](####getDataset)                                   |     |
+| [getDatasetList](####getDatasetList)                           |     |
+| [getMonitorList](####getMonitorList)                           |     |
+| [getMonitorListRaw](####getMonitorListRaw)                     |     |
+| [setMonitor](####setMonitor)                                   |     |
 
 ## Search
 
