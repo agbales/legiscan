@@ -434,3 +434,16 @@ Returns details about a person, including their bills they've sponsored:
   }]
 }
 ```
+
+### Datasets
+
+#### getDataset
+
+Get a `.zip` archive for the requested dataset containing all bills, votes and people. Find the `accessKey` via `getDatasetList`.
+
+```
+getDataset(sessionId, accessKey)
+```
+
+- `sessionId` number
+- `accessKey` string

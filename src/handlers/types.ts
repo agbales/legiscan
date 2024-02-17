@@ -159,6 +159,19 @@ export type Session = {
 
 type StatusKey = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type MIME64EncodedZipArchive = string;
+
+export type Dataset = {
+  state_id: number;
+  session_id: number;
+  session_name: string;
+  dataset_hash: string;
+  dataset_date: string;
+  dataset_size: number;
+  mime: string;
+  zip: MIME64EncodedZipArchive;
+};
+
 type Committee = {
   committee_id: number;
   chamber: string;
