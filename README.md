@@ -24,33 +24,33 @@ legiscan
 
 ## Overview
 
-| Jump to:                                                       |     |
-| -------------------------------------------------------------- | --- |
-| [search](####search)                                           |     |
-| [searchAllResults](####searchAllResults)                       |     |
-| [searchRaw](####searchRaw)                                     |     |
-| [getBill](####getBill)                                         |     |
-| [getBills](####getBills)                                       |     |
-| [getBillTextByBillId](####getBillTextByBillId)                 |     |
-| [getBillTextByDocId](####getBillTextByDocId)                   |     |
-| [getMasterListByState](####getMasterListByState)               |     |
-| [getMasterListBySessionId](####getMasterListBySessionId)       |     |
-| [getMasterListByStateRaw](####getMasterListByStateRaw)         |     |
-| [getMasterListBySessionIdRaw](####getMasterListBySessionIdRaw) |     |
-| [getAmendmentById](####getAmendmentById)                       |     |
-| [getSessionListByState](####getSessionListByState)             |     |
-| [getSupplementById](####getSupplementById)                     |     |
-| [getRollCallById](####getRollCallById)                         |     |
-| [getPersonById](####getPersonById)                             |     |
-| [getPeopleBySessionId](####getPeopleBySessionId)               |     |
-| [getPersonWithSponsoredBills](####getPersonWithSponsoredBills) |     |
-| [getDataset](####getDataset)                                   |     |
-| [getDatasetList](####getDatasetList)                           |     |
-| [getMonitorList](####getMonitorList)                           |     |
-| [getMonitorListRaw](####getMonitorListRaw)                     |     |
-| [setMonitor](####setMonitor)                                   |     |
+| Jump to:                                                    |     |
+| ----------------------------------------------------------- | --- |
+| [search](#search)                                           |     |
+| [searchAllResults](#searchAllResults)                       |     |
+| [searchRaw](#searchRaw)                                     |     |
+| [getBill](#getBill)                                         |     |
+| [getBills](#getBills)                                       |     |
+| [getBillTextByBillId](#getBillTextByBillId)                 |     |
+| [getBillTextByDocId](#getBillTextByDocId)                   |     |
+| [getMasterListByState](#getMasterListByState)               |     |
+| [getMasterListBySessionId](#getMasterListBySessionId)       |     |
+| [getMasterListByStateRaw](#getMasterListByStateRaw)         |     |
+| [getMasterListBySessionIdRaw](#getMasterListBySessionIdRaw) |     |
+| [getAmendmentById](#getAmendmentById)                       |     |
+| [getSessionListByState](#getSessionListByState)             |     |
+| [getSupplementById](#getSupplementById)                     |     |
+| [getRollCallById](#getRollCallById)                         |     |
+| [getPersonById](#getPersonById)                             |     |
+| [getPeopleBySessionId](#getPeopleBySessionId)               |     |
+| [getPersonWithSponsoredBills](#getPersonWithSponsoredBills) |     |
+| [getDataset](#getDataset)                                   |     |
+| [getDatasetList](#getDatasetList)                           |     |
+| [getMonitorList](#getMonitorList)                           |     |
+| [getMonitorListRaw](#getMonitorListRaw)                     |     |
+| [setMonitor](#setMonitor)                                   |     |
 
-## Search
+## Search Overview
 
 #### search
 
@@ -110,7 +110,7 @@ searchRaw({
 - `state` default: 'ALL'
 - `id` number (optional)
 
-### Bills
+## Bills
 
 Fetch bills by their unique IDs. The `LegiscanBill` object:
 
@@ -307,7 +307,7 @@ getAmendmentById(amendmentId)
 
 - `amendmentId`: number
 
-### Sessions
+## Sessions
 
 Get a list of sessions in a given state abbreviation. Returns an array of session objects:
 
@@ -338,7 +338,7 @@ getSessionListByState(state)
 
 - `state`: string (ex: AL, OK, US, etc.) Default: 'ALL'
 
-### Supplements
+## Supplements
 
 Get a supplement text by ID. The supplement text itself is base64 encoded to allow for binary PDF/Word transfers. Returns a supplement object:
 
@@ -367,7 +367,7 @@ getSupplementById(supplementId)
 
 - `supplementId` number
 
-### Roll Calls
+## Roll Calls
 
 Get roll call details, including a summary and individual votes with `people_id`. Returns a `RollCall` object:
 
@@ -403,7 +403,7 @@ getRollCallById(rollCallId)
 
 - `rollCallId` number
 
-### People
+## People
 
 Get information about people related to bills. Returns a `Person` object:
 
@@ -519,7 +519,7 @@ Returns details about a person, including their bills they've sponsored:
 }
 ```
 
-### Datasets
+## Datasets
 
 #### getDataset
 
@@ -560,7 +560,7 @@ getDatasetList({
 })
 ```
 
-### Monitor
+## Monitor
 
 If you're tracking bills with your LegiScan account, you can get and set your list with the following.
 
