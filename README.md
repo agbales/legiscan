@@ -1,12 +1,14 @@
-# legiscan
+# Legiscan
 
-Easily interact with the [LegiScan API](https://legiscan.com/legiscan) with javascript. Get an API Key and follow the instructions below. The legiscan package is a wrapper around the API functionality documented in [this manual](https://legiscan.com/gaits/documentation/legiscan).
+This package simplifies interactions with the [LegiScan API](https://legiscan.com/legiscan) using JavaScript. The `legiscan` package is built with TypeScript and provides a wrapper to support full API functionality documented in [this manual](https://legiscan.com/gaits/documentation/legiscan).
 
 ## Installation
 
 `npm install legiscan`
 
 ## Quickstart
+
+With your own [API Key](https://legiscan.com/legiscan):
 
 ```
 import { Legiscan } from 'legiscan'
