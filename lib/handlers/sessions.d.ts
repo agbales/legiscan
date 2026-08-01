@@ -1,2 +1,2 @@
 import { Session } from './types.js';
-export declare const fetchSessionListByState: (state: string | undefined, apiKey: string) => Promise<Session[] | undefined>;
+export declare const fetchSessionListByState: (apiKey: string, state?: string) => Promise<Session[]>;

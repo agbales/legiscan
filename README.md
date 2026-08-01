@@ -19,53 +19,57 @@ const bill = await legiscan.getBill(1447996)
 console.log(bill.title)
 
 const results = await legiscan.search({ query: 'education', state: 'CA' })
-console.log(results)
+console.log(results.summary, results.results)
 ```
+
+API errors (`status: ERROR`) throw `LegiscanError`.
 
 ## API
 
-Parameters and response shapes match the [LegiScan manual](https://legiscan.com/gaits/documentation/legiscan). TypeScript types ship with the package.
+Parameters and response shapes match the [LegiScan manual](https://legiscan.com/gaits/documentation/legiscan). Method names follow LegiScan operations; older aliases are noted below. TypeScript types ship with the package.
 
 ### Search
 
-- `search(params)` — full text search, 50 results per page
+- `search(params)` — `getSearch`, 50 results per page; returns `{ summary, results }`
 - `searchAllResults(params)` — fetches every page; can use many queries on broad searches
-- `getSearchRaw(params)` — up to 2000 results per page (`bill_id`, `change_hash`, relevance)
+- `getSearchRaw(params)` — `getSearchRaw`, up to 2000 abbreviated results per page
+
+`params`: `query`, optional `page`, `year` (1=all, 2=current, 3=recent, 4=prior, or exact year), `state` (incl. `ALL`), or `sessionId`.
 
 ### Bills
 
 - `getBill(billId)`
 - `getBills(billIds)` — convenience batch over `getBill`
-- `getBillTextByBillId(billId)` — two requests (bill, then latest text); prefer `getBillTextByDocId` when you already have a `doc_id`
-- `getBillTextByDocId(docId)` — document body is base64-encoded
+- `getBillText(docId)` — document body is base64-encoded
+- `getBillTextByDocId(docId)` — alias for `getBillText`
+- `getBillTextByBillId(billId)` — two requests (bill, then latest text); prefer `getBillText` when you have a `doc_id`
 
 ### Master lists
 
-- `getMasterListByState(state)`
-- `getMasterListBySessionId(sessionId)`
-- `getMasterListByStateRaw(state)`
-- `getMasterListBySessionIdRaw(sessionId)`
+- `getMasterListByState(state)` / `getMasterListBySessionId(sessionId)`
+- `getMasterListByStateRaw(state)` / `getMasterListBySessionIdRaw(sessionId)`
 
 ### Amendments, supplements, sessions, roll calls
 
-- `getAmendmentById(amendmentId)` — document body is base64-encoded
-- `getSupplementById(supplementId)` — document body is base64-encoded
-- `getSessionListByState(state)`
-- `getRollCallById(rollCallId)`
+- `getAmendment(amendmentId)` — alias: `getAmendmentById`
+- `getSupplement(supplementId)` — alias: `getSupplementById`
+- `getSessionList(state?)` — omit `state` for all sessions; alias: `getSessionListByState`
+- `getRollCall(rollCallId)` — alias: `getRollCallById`
 
 ### People
 
-- `getPersonById(peopleId)`
+- `getPerson(peopleId)` — alias: `getPersonById`
 - `getSessionPeople(sessionId)`
-- `getPersonWithSponsoredBillsById(peopleId)`
+- `getSponsoredList(peopleId)` — alias: `getPersonWithSponsoredBillsById`
 
 ### Datasets
 
-- `getDatasetList(state?, year?)` — includes `session_id` and `access_key` for `getDataset`
-- `getDataset(sessionId, accessKey)` — session zip archive
+- `getDatasetList(state?, year?)` — includes `session_id` and `access_key` for dataset fetch
+- `getDataset(sessionId, accessKey, format?)` — session zip as base64 JSON (`format`: `json` | `csv`)
+- `getDatasetRaw(sessionId, accessKey, format?)` — binary zip `ArrayBuffer`
 
 ### Monitor
 
-- `getMonitorList(record?)`
+- `getMonitorList(record?)` — `record`: `current` | `archived` (default `current`)
 - `getMonitorListRaw(record?)`
 - `setMonitor(list, action, stance?)` — `action`: `monitor` | `remove` | `set`; `stance`: `watch` | `support` | `oppose`

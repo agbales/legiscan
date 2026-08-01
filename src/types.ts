@@ -52,3 +52,15 @@ export type SetMonitorResponse = {
 };
 
 export type SearchAllParams = SearchParams & { page?: never };
+
+export type {
+  Dataset,
+  DatasetFormat,
+  DatasetListItem,
+  MonitorRecord,
+  SearchRawResponse,
+  SearchResponse,
+  SearchResult,
+  SearchRawResult,
+  State,
+} from './handlers/types.js';

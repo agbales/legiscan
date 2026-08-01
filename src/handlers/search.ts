@@ -1,5 +1,28 @@
-import { LEGISCAN_BASE_URL } from '../config.js';
-import { SearchResponse, SearchResult } from './types.js';
+import { legiscanRequest } from '../request.js';
+import {
+  SearchRawResponse,
+  SearchRawResult,
+  SearchResponse,
+  SearchResult,
+} from './types.js';
+
+type SearchResultBag = Record<string, unknown>;
+
+function parseSearchResults<T>(searchresult: SearchResultBag): {
+  summary: SearchResponse['summary'];
+  results: T[];
+} {
+  const { summary, ...rest } = searchresult;
+  const results = Object.keys(rest)
+    .filter(key => /^\d+$/.test(key))
+    .sort((a, b) => Number(a) - Number(b))
+    .map(key => rest[key] as T);
+
+  return {
+    summary: summary as SearchResponse['summary'],
+    results,
+  };
+}
 
 export const fetchSearch = async (
   query: string,
@@ -8,21 +31,18 @@ export const fetchSearch = async (
   year: number = 2,
   state: string = 'ALL',
   sessionId?: number
-): Promise<SearchResponse | undefined> => {
-  const op = 'getSearch';
+): Promise<SearchResponse> => {
+  const res = await legiscanRequest(apiKey, 'getSearch', {
+    query,
+    page,
+    year: sessionId ? undefined : year,
+    state: sessionId ? undefined : state,
+    id: sessionId,
+  });
 
-  const stateOrSessionParams = sessionId ? `id=${sessionId}` : `state=${state}`;
-
-  try {
-    const res = await fetch(
-      `${LEGISCAN_BASE_URL}/?key=${apiKey}&op=${op}&${stateOrSessionParams}&page=${page}&year=${year}&query=${query}`
-    ).then(res => res.json());
-
-    return res;
-  } catch (error) {
-    console.log('Error fetching', query, 'error:', error);
-    return undefined;
-  }
+  return parseSearchResults<SearchResult>(
+    res.searchresult as SearchResultBag
+  );
 };
 
 async function getPaginatedSearchResults(
@@ -36,7 +56,7 @@ async function getPaginatedSearchResults(
 ): Promise<SearchResult[]> {
   const res = await fetchSearch(query, apiKey, page, year, state, sessionId);
 
-  if (!res?.results || page > res.summary.page_total) {
+  if (!res.results.length || page > res.summary.page_total) {
     return accumulatedResults;
   }
 
@@ -60,17 +80,7 @@ export const searchAllPages = async (
   state: string = 'ALL',
   sessionId?: number
 ) => {
-  const page = 1;
-  const response = await getPaginatedSearchResults(
-    query,
-    apiKey,
-    page,
-    year,
-    state,
-    sessionId
-  );
-
-  return response;
+  return getPaginatedSearchResults(query, apiKey, 1, year, state, sessionId);
 };
 
 export const fetchSearchRaw = async (
@@ -80,19 +90,16 @@ export const fetchSearchRaw = async (
   year: number = 2,
   state: string = 'ALL',
   sessionId?: number
-): Promise<SearchResponse | undefined> => {
-  const op = 'getSearchRaw';
+): Promise<SearchRawResponse> => {
+  const res = await legiscanRequest(apiKey, 'getSearchRaw', {
+    query,
+    page,
+    year: sessionId ? undefined : year,
+    state: sessionId ? undefined : state,
+    id: sessionId,
+  });
 
-  const stateOrSessionParams = sessionId ? `id=${sessionId}` : `state=${state}`;
-
-  try {
-    const res = await fetch(
-      `${LEGISCAN_BASE_URL}/?key=${apiKey}&op=${op}&${stateOrSessionParams}&page=${page}&year=${year}&query=${query}`
-    ).then(res => res.json());
-
-    return res;
-  } catch (error) {
-    console.log('Error fetching', query, 'error:', error);
-    return undefined;
-  }
+  return parseSearchResults<SearchRawResult>(
+    res.searchresult as SearchResultBag
+  );
 };

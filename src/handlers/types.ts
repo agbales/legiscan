@@ -12,6 +12,13 @@ export type SearchResult = {
   title: string;
 };
 
+/** Abbreviated result from getSearchRaw */
+export type SearchRawResult = {
+  relevance: number;
+  bill_id: number;
+  change_hash: string;
+};
+
 export type Person = {
   people_id: number;
   person_hash: string;
@@ -63,6 +70,11 @@ type Summary = {
 export type SearchResponse = {
   summary: Summary;
   results: SearchResult[];
+};
+
+export type SearchRawResponse = {
+  summary: Summary;
+  results: SearchRawResult[];
 };
 
 type Vote = {
@@ -155,7 +167,12 @@ export type Session = {
   session_tag: string;
   session_title: string;
   session_name: string;
+  dataset_hash?: string;
 };
+
+export type DatasetFormat = 'json' | 'csv';
+
+export type MonitorRecord = 'current' | 'archived';
 
 type StatusKey = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
@@ -166,6 +183,22 @@ export type ProgressEvent = {
 
 type MIME64EncodedZipArchive = string;
 
+/** Item from getDatasetList (includes access_key for getDataset). */
+export type DatasetListItem = {
+  state_id: number;
+  session_id: number;
+  special: number;
+  year_start: number;
+  year_end: number;
+  session_name: string;
+  session_title: string;
+  dataset_hash: string;
+  dataset_date: string;
+  dataset_size: number;
+  access_key: string;
+};
+
+/** Payload from getDataset (base64-encoded ZIP). */
 export type Dataset = {
   state_id: number;
   session_id: number;
@@ -344,28 +377,37 @@ export type LegiscanBill = {
   calendar: CalendarEvent[];
 };
 
+export type MasterListItem = {
+  bill_id: number;
+  number: string;
+  change_hash: string;
+  url: string;
+  status_date: string;
+  status: string;
+  last_action_date: string;
+  last_action: string;
+  title?: string;
+  description?: string;
+};
+
+/** Keyed object returned by getMasterList (`"0"`, `"1"`, …). */
 export type MasterList = {
-  [key: string]: {
-    bill_id: number;
-    number: string;
-    change_hash: string;
-    url: string;
-    status_date: string;
-    status: string;
-    last_action_date: string;
-    last_action: string;
-  };
+  [key: string]: MasterListItem;
 };
 
+export type MasterListRawItem = {
+  bill_id: number;
+  number: string;
+  change_hash: string;
+};
+
+/** Keyed object returned by getMasterListRaw (`"0"`, `"1"`, …). */
 export type MasterListRaw = {
-  [key: string]: {
-    bill_id: number;
-    number: string;
-    change_hash: string;
-  };
+  [key: string]: MasterListRawItem;
 };
 
-export type State =
+/** US state / Congress abbreviation used by LegiScan. */
+export type StateAbbreviation =
   | 'AK'
   | 'HI'
   | 'AL'
@@ -417,3 +459,6 @@ export type State =
   | 'WV'
   | 'WY'
   | 'US';
+
+/** State abbreviation, or ALL where LegiScan allows a nationwide query. */
+export type State = StateAbbreviation | 'ALL';

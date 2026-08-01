@@ -1,19 +1,10 @@
-import { LEGISCAN_BASE_URL } from '../config.js';
+import { legiscanRequest } from '../request.js';
 import { RollCall } from './types.js';
 
 export const fetchRollCallById = async (
   rollCallId: number,
   apiKey: string
-): Promise<RollCall | undefined> => {
-  const op = 'getRollCall';
-
-  try {
-    const res = await fetch(
-      `${LEGISCAN_BASE_URL}/?key=${apiKey}&op=${op}&id=${rollCallId}`
-    ).then(res => res.json());
-    return res.roll_call;
-  } catch (error) {
-    console.log('Error fetching', rollCallId, 'error:', error);
-    return undefined;
-  }
+): Promise<RollCall> => {
+  const res = await legiscanRequest(apiKey, 'getRollCall', { id: rollCallId });
+  return res.roll_call as RollCall;
 };

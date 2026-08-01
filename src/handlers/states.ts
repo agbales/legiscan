@@ -1,14 +1,64 @@
-import { State } from "./types";
+import { State, StateAbbreviation } from './types.js';
 
-export const states: State[] = ['AK', 'HI', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 
-  'DE', 'FL', 'GA', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 
-  'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 
-  'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 
-  'VA', 'VT', 'WA', 'WI', 'WV', 'WY', 'US',
+export const states: StateAbbreviation[] = [
+  'AK',
+  'HI',
+  'AL',
+  'AR',
+  'AZ',
+  'CA',
+  'CO',
+  'CT',
+  'DE',
+  'FL',
+  'GA',
+  'IA',
+  'ID',
+  'IL',
+  'IN',
+  'KS',
+  'KY',
+  'LA',
+  'MA',
+  'MD',
+  'ME',
+  'MI',
+  'MN',
+  'MO',
+  'MS',
+  'MT',
+  'NC',
+  'ND',
+  'NE',
+  'NH',
+  'NJ',
+  'NM',
+  'NV',
+  'NY',
+  'OH',
+  'OK',
+  'OR',
+  'PA',
+  'RI',
+  'SC',
+  'SD',
+  'TN',
+  'TX',
+  'UT',
+  'VA',
+  'VT',
+  'WA',
+  'WI',
+  'WV',
+  'WY',
+  'US',
 ];
 
-export const getStateAbbreviation = (stateName: State) => {
-  const mapper: { [key: string]: State } = {
+/** Map a full jurisdiction name to a LegiScan state abbreviation. */
+export const getStateAbbreviation = (
+  stateName: string
+): State | undefined => {
+  const mapper: Record<string, State> = {
     Arizona: 'AZ',
     Alabama: 'AL',
     Alaska: 'AK',
@@ -59,6 +109,10 @@ export const getStateAbbreviation = (stateName: State) => {
     'West Virginia': 'WV',
     Wisconsin: 'WI',
     Wyoming: 'WY',
+    'United States': 'US',
+    Congress: 'US',
+    US: 'US',
+    ALL: 'ALL',
   };
 
   return mapper[stateName];
