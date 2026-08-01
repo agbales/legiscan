@@ -14,7 +14,7 @@ export declare class Legiscan {
     getMasterListByStateRaw(state: State): Promise<import("./handlers/types.js").MasterListRaw[] | undefined>;
     getMasterListBySessionId(sessionId: number): Promise<import("./handlers/types.js").MasterList[] | undefined>;
     getMasterListBySessionIdRaw(sessionId: number): Promise<import("./handlers/types.js").MasterListRaw[] | undefined>;
-    getAmendmentById(amendmentId: number): Promise<import("./handlers/types.js").Amendment[] | undefined>;
+    getAmendmentById(amendmentId: number): Promise<import("./handlers/types.js").Amendment | undefined>;
     getSessionListByState(state: State): Promise<import("./handlers/types.js").Session[] | undefined>;
     getSupplementById(supplementId: number): Promise<import("./handlers/types.js").Supplement | undefined>;
     getRollCallById(rollCallId: number): Promise<import("./handlers/types.js").RollCall | undefined>;

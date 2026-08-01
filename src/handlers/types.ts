@@ -159,6 +159,11 @@ export type Session = {
 
 type StatusKey = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+export type ProgressEvent = {
+  date: string;
+  event: StatusKey;
+};
+
 type MIME64EncodedZipArchive = string;
 
 export type Dataset = {
@@ -249,6 +254,29 @@ type Text = {
   text_hash: string;
 };
 
+type Sast = {
+  type_id: number;
+  type: string;
+  sast_bill_number: string;
+  sast_bill_id: number;
+};
+
+type BillVote = {
+  roll_call_id: number;
+  date: string;
+  desc: string;
+  yea: number;
+  nay: number;
+  nv: number;
+  absent: number;
+  total: number;
+  passed: number;
+  chamber: string;
+  chamber_id: number;
+  url: string;
+  state_link: string;
+};
+
 export type Amendment = {
   amendment_id: number;
   chamber: string;
@@ -262,6 +290,7 @@ export type Amendment = {
   mime_id: number;
   amendment_size: number;
   amendment_hash: string;
+  doc: string;
 };
 
 export type Supplement = {
@@ -306,10 +335,10 @@ export type LegiscanBill = {
   referrals: Referral[];
   history: HistoryAction[];
   sponsors: Sponsor[];
-  sasts: [];
+  sasts: Sast[];
   subjects: Subject[];
   texts: Text[];
-  votes: [];
+  votes: BillVote[];
   amendments: Amendment[];
   supplements: Supplement[];
   calendar: CalendarEvent[];

@@ -4,7 +4,7 @@ import { Amendment } from './types.js';
 export const fetchAmendmentById = async (
   amendmentId: number,
   apiKey: string
-): Promise<Amendment[] | undefined> => {
+): Promise<Amendment | undefined> => {
   const op = 'getAmendment';
 
   try {
